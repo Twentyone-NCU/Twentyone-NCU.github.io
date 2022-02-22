@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AWS Service types | Bboy Twentyone</title><meta name="keywords" content="dancer, master degree, learning"><meta name="author" content="洪群崴"><meta name="copyright" content="洪群崴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Computing ResourcesAmazon EC2 AMIs Custom AMI Instance Type User Data Tag Lifecycle (Pending, Running, Stop, Reboot, Terminate)AWS Lambda Serverless function    ConnectionAWS VPC VPN Flow:IGW &lt;&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS Service types">
+<meta property="og:url" content="https://twentyone-ncu.github.io.git/2022/02/22/AWS-Service-types/AWS-Service-types/index.html">
+<meta property="og:site_name" content="Bboy Twentyone">
+<meta property="og:description" content="Computing ResourcesAmazon EC2 AMIs Custom AMI Instance Type User Data Tag Lifecycle (Pending, Running, Stop, Reboot, Terminate)AWS Lambda Serverless function    ConnectionAWS VPC VPN Flow:IGW &lt;&amp;gt">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://twentyone-ncu.github.io.git/img/top_2.jpg">
+<meta property="article:published_time" content="2022-02-22T06:21:54.000Z">
+<meta property="article:modified_time" content="2022-02-22T06:25:27.175Z">
+<meta property="article:author" content="洪群崴">
+<meta property="article:tag" content="dancer, master degree, learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://twentyone-ncu.github.io.git/img/top_2.jpg"><link rel="shortcut icon" href="/img/web.png"><link rel="canonical" href="https://twentyone-ncu.github.io.git/2022/02/22/AWS-Service-types/AWS-Service-types/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AWS Service types',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-22 14:25:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">載入中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/cartoon_me.svg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分類</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 歸檔</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分類</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top_2.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Bboy Twentyone</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 歸檔</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分類</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AWS Service types<a class="post-edit-link" href="null_posts/AWS-Service-types/AWS-Service-types.md" title="編輯" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" datetime="2022-02-22T06:21:54.000Z" title="發表於 2022-02-22 14:21:54">2022-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" datetime="2022-02-22T06:25:27.175Z" title="更新於 2022-02-22 14:25:27">2022-02-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%B2%E7%AB%AF%E7%9F%A5%E8%AD%98/">雲端知識</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AWS Service types"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<h3 id="Computing-Resources"><a href="#Computing-Resources" class="headerlink" title="Computing Resources"></a>Computing Resources</h3><h4 id="Amazon-EC2"><a href="#Amazon-EC2" class="headerlink" title="Amazon EC2"></a>Amazon EC2</h4><ul>
+<li>AMIs</li>
+<li>Custom AMI</li>
+<li>Instance Type</li>
+<li>User Data</li>
+<li>Tag</li>
+<li>Lifecycle (Pending, Running, Stop, Reboot, Terminate)<h4 id="AWS-Lambda"><a href="#AWS-Lambda" class="headerlink" title="AWS Lambda"></a>AWS Lambda</h4></li>
+<li>Serverless function</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h3><h4 id="AWS-VPC"><a href="#AWS-VPC" class="headerlink" title="AWS VPC"></a>AWS VPC</h4><ul>
+<li>VPN Flow:<br>IGW &lt;&gt; Route Table&lt;&gt;NACL&lt;&gt;Subnet&lt;&gt;Security group&lt;&gt;Instance</li>
+<li>Across Multiple AZs</li>
+<li>Subnet default: 前四後一</li>
+<li>Network ACL: Deny Traffic</li>
+<li>Route table</li>
+<li>NAT Gateways: 只支援裡面到外面</li>
+<li>IGW (0.0.0.0/0)</li>
+<li>Elastic IP Address</li>
+<li>ENI: Elastic Network Interface (Same AZ, Accross EC2)<h4 id="AWS-DX"><a href="#AWS-DX" class="headerlink" title="AWS DX"></a>AWS DX</h4></li>
+<li>需要向 AWS 申請</li>
+<li>Dirrect Connect</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Serverless"><a href="#Serverless" class="headerlink" title="Serverless"></a>Serverless</h3><h4 id="Lambda-Function"><a href="#Lambda-Function" class="headerlink" title="Lambda Function"></a>Lambda Function</h4><ul>
+<li>Lambda Layer (At most 5)</li>
+<li>Source Code</li>
+<li>Configurations (Runtime max, RAM max)</li>
+<li>Stateless</li>
+<li>Fully managed </li>
+<li>handle_name</li>
+<li>Version control</li>
+<li>All run in VPC</li>
+<li>Execution Permission<h4 id="Amazon-API-Gateway"><a href="#Amazon-API-Gateway" class="headerlink" title="Amazon API Gateway"></a>Amazon API Gateway</h4></li>
+<li>Allow to create API</li>
+<li>Running on EC2, Lambda, HTTP(s) base application</li>
+<li>DDoS protection</li>
+<li>Authenticate &amp; Authorize requests</li>
+<li>Endpoint: Edge-optimized, Regionsl, Private<h4 id="AWS-step-funciton"><a href="#AWS-step-funciton" class="headerlink" title="AWS step funciton"></a>AWS step funciton</h4></li>
+<li>Allow to Retry</li>
+<li>Flow controller between Lambda</li>
+<li>Self programming language</li>
+<li>Low-code visual workflow to manage serverless architecture</li>
+<li>Workflow: Parallel, Series, if/else, …</li>
+<li>State machine<h4 id="AWS-X-ray"><a href="#AWS-X-ray" class="headerlink" title="AWS X-ray"></a>AWS X-ray</h4></li>
+<li>Monitor of Serverless tool, 甘特圖</li>
+<li>顯示不同 serverless 啟用時間</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><h4 id="Amazon-ECS"><a href="#Amazon-ECS" class="headerlink" title="Amazon ECS"></a>Amazon ECS</h4><ul>
+<li>Docker container</li>
+<li>Linux, Window<h4 id="Amazon-Fargate"><a href="#Amazon-Fargate" class="headerlink" title="Amazon Fargate"></a>Amazon Fargate</h4></li>
+<li>Serverless Container</li>
+<li>Linux</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><h4 id="Amazon-DMS"><a href="#Amazon-DMS" class="headerlink" title="Amazon DMS"></a>Amazon DMS</h4><ul>
+<li>Database migration</li>
+<li>Use case: Migrate, Replicate<h4 id="Amazon-EBS"><a href="#Amazon-EBS" class="headerlink" title="Amazon EBS"></a>Amazon EBS</h4></li>
+<li>Bulk storage: HDD, SDD</li>
+<li>Instance Store</li>
+<li>Can only up scale</li>
+<li>IOPS, Throughput</li>
+<li>EBS Optimized</li>
+<li>Snapshot: Across Region, encrypted, Version control<h4 id="Amazon-S3"><a href="#Amazon-S3" class="headerlink" title="Amazon S3"></a>Amazon S3</h4></li>
+<li>Fully managed</li>
+<li>Use case: Static Website, Endpoints for Download, Backup tool…</li>
+<li>CAP Thm = Brewer’s thm (只能三選二)</li>
+<li><ol>
+<li>Consistency: Strong read-after-write consistency model</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Availability: Eventual Consistency</li>
+</ol>
+</li>
+<li>Bucket: Regional service</li>
+<li>Object Storage: Object URL(bucket name, object key)</li>
+<li>Object key are partitioned by “prefix”</li>
+<li>Storage Classes: </li>
+<li><ol>
+<li>S3 Standard</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>S3 Intelligent-Tiering</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>S3 Standard IA</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>S3 One Zone IA</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>S3 Glacier<h4 id="Amazon-EFS-amp-FSx"><a href="#Amazon-EFS-amp-FSx" class="headerlink" title="Amazon EFS &amp; FSx"></a>Amazon EFS &amp; FSx</h4></li>
+</ol>
+</li>
+<li>Shared File System</li>
+<li>EFS: </li>
+<li><ol>
+<li>Linux-based</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Mount Target (Cross AZs)</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Fully managed</li>
+</ol>
+</li>
+<li>FSx:</li>
+<li><ol>
+<li>window-based<h4 id="Amazon-RDS"><a href="#Amazon-RDS" class="headerlink" title="Amazon RDS"></a>Amazon RDS</h4></li>
+</ol>
+</li>
+<li>Relational Database Service</li>
+<li>垂直擴展</li>
+<li>Fully managed</li>
+<li>Subnet group(Multi-AZ): Primary DB, Secondary DB</li>
+<li>Read Replica</li>
+<li>Automated backups &amp; Manually snapshot</li>
+<li>Backup window</li>
+<li>Encryption: AWS KMS</li>
+<li>Maintenance windows</li>
+<li>Auto Scaling<h4 id="Amazon-Dynamo-DB"><a href="#Amazon-Dynamo-DB" class="headerlink" title="Amazon Dynamo DB"></a>Amazon Dynamo DB</h4></li>
+<li>Key-Value Database</li>
+<li>Primary key = Partition Key + Sort Key</li>
+<li>Fully managed </li>
+<li>Use case: 高 I/O 工作負載</li>
+<li>Strong consistency: 2 RCU</li>
+<li>Eventual consistency: 1 RCU</li>
+<li>Dynamo DB Stream</li>
+<li>Global Table</li>
+<li>Auto Scaling: RCU or WCU</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Secure"><a href="#Secure" class="headerlink" title="Secure"></a>Secure</h3><h4 id="Security-Group"><a href="#Security-Group" class="headerlink" title="Security Group"></a>Security Group</h4><ul>
+<li>“Allow” resource to be access </li>
+<li>Virtual firewall for instances</li>
+<li>Stateful</li>
+<li>Support, Allow rules only<h4 id="AWS-IAM"><a href="#AWS-IAM" class="headerlink" title="AWS IAM"></a>AWS IAM</h4></li>
+<li>Root User &gt; IAM User, Admin Group &gt; IAM Group</li>
+<li>Who: Root User, IAM User, IAM Group</li>
+<li>What, To Whom (JSON): IAM Policy, IAM Role<h4 id="AWS-WAF"><a href="#AWS-WAF" class="headerlink" title="AWS WAF"></a>AWS WAF</h4></li>
+<li>OSI 7th: Application &amp; API</li>
+<li>CloudFront, API Gateway, ALB<h4 id="AWS-Shield"><a href="#AWS-Shield" class="headerlink" title="AWS Shield"></a>AWS Shield</h4></li>
+<li>OSI 3th</li>
+<li>DDoS Protection</li>
+<li>Route53, CloudFront, ELB<h4 id="Artifact"><a href="#Artifact" class="headerlink" title="Artifact"></a>Artifact</h4></li>
+<li>紀錄現在 AWS 合規有哪些</li>
+<li>SOC, PCI, BAA, NDA<h4 id="AWS-Trusted-Advisor"><a href="#AWS-Trusted-Advisor" class="headerlink" title="AWS Trusted Advisor"></a>AWS Trusted Advisor</h4></li>
+<li>最佳實踐的提醒</li>
+<li>針對整個 Account</li>
+<li>Real time guidance</li>
+<li>Security check</li>
+<li>Inspect: Cost, Performance, Security, FT, Service Limit</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h3><h4 id="Amazon-CloudWatch"><a href="#Amazon-CloudWatch" class="headerlink" title="Amazon CloudWatch"></a>Amazon CloudWatch</h4><ul>
+<li>Resource Aspect</li>
+<li>Complete visibility of cloud resources and service (資源裡的服務)</li>
+<li>Metrics, Alarm, Rule &amp; Event, Schedule, Logs </li>
+</ul>
+<hr>
+<h4 id="Amazon-Config"><a href="#Amazon-Config" class="headerlink" title="Amazon Config"></a>Amazon Config</h4><ul>
+<li>Account Aspect</li>
+<li>Assess, audit, and evalutate the configurations of your AWS resources (帳號資源)</li>
+<li>“Config Rules” 來管控 Account 的 Policy (強制)<h4 id="Amazon-CloudTrail"><a href="#Amazon-CloudTrail" class="headerlink" title="Amazon CloudTrail"></a>Amazon CloudTrail</h4></li>
+<li>Account Aspect</li>
+<li>Account API calling Record (登入登出)</li>
+</ul>
+<hr>
+<h4 id="Amazon-Inspector"><a href="#Amazon-Inspector" class="headerlink" title="Amazon Inspector"></a>Amazon Inspector</h4><ul>
+<li>Automation Inspect</li>
+<li>偵測應用程式方面的弱點</li>
+<li>依據國際組織的安全標準幫忙健檢<h4 id="Amazon-Macie"><a href="#Amazon-Macie" class="headerlink" title="Amazon Macie"></a>Amazon Macie</h4></li>
+<li>自動化偵測</li>
+<li>Only S3 bucket</li>
+<li>Only Advice</li>
+</ul>
+<hr>
+<h4 id="Amazon-SNS"><a href="#Amazon-SNS" class="headerlink" title="Amazon SNS"></a>Amazon SNS</h4><ul>
+<li>pub/sub msg</li>
+<li>publisher, topic, subscriper<h4 id="Amazon-SQS"><a href="#Amazon-SQS" class="headerlink" title="Amazon SQS"></a>Amazon SQS</h4></li>
+<li>For Queueing Request (Buffer)</li>
+<li>Send/Receive msg</li>
+<li>Fully managed msg</li>
+<li>Asynchronous</li>
+<li>Queue Types: Standard, FIFO</li>
+<li>Msg lifecycle</li>
+<li>API Call: Short/Long polling, Dead Letter queue</li>
+<li>Use case: Work queues, Buffer operations, request reloading, trigger scaling<h4 id="Amazon-ELB"><a href="#Amazon-ELB" class="headerlink" title="Amazon ELB"></a>Amazon ELB</h4></li>
+<li>Only Between AZs</li>
+<li>可以 external (Public) 也可以 internal (Private) 導流服務</li>
+<li>Target: Computing unit (EC2, Containers, IP address)</li>
+<li>Types: </li>
+<li><ol>
+<li>Application Load Balancer (ALB): 7th layer</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Network Load Balancer (NLB): 4th layer</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Classic Load Balancer: Previous generation</li>
+</ol>
+</li>
+<li>Target Group: 可跨 AZs<h4 id="Amazon-Route-53"><a href="#Amazon-Route-53" class="headerlink" title="Amazon Route 53"></a>Amazon Route 53</h4></li>
+<li>Global Service (Across Regional)</li>
+<li>Target: DNS load balancing (導流服務)</li>
+<li>Domain name: monthly subscribe</li>
+<li>Routing Policy: </li>
+<li><ol>
+<li>simple routing</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Failover routing</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Geolocation routing: Request IP &amp; Endpoint</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>Geoproximity routing: Server loaction (Traffic flow only)</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Latency routing</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>Multi-value answer routing</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>Weighted routing</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h3><h4 id="RTO"><a href="#RTO" class="headerlink" title="RTO"></a>RTO</h4><ul>
+<li>How long system needs for recovering from a disaster<h4 id="RPO"><a href="#RPO" class="headerlink" title="RPO"></a>RPO</h4></li>
+<li>A measurement of the maxium tolerable amount of data to lose<h4 id="AWS-Auto-Scaling"><a href="#AWS-Auto-Scaling" class="headerlink" title="AWS Auto Scaling"></a>AWS Auto Scaling</h4></li>
+<li>Horizontal Scaling &amp; Vertical Scaling</li>
+<li>Through CloudWatch</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><h4 id="Amazon-SageMaker-amp-DeepRacer"><a href="#Amazon-SageMaker-amp-DeepRacer" class="headerlink" title="Amazon SageMaker &amp; DeepRacer"></a>Amazon SageMaker &amp; DeepRacer</h4><h4 id="Amazon-Lex"><a href="#Amazon-Lex" class="headerlink" title="Amazon Lex"></a>Amazon Lex</h4><ul>
+<li>Call Center<h4 id="Amazon-Polly-amp-Transcribe"><a href="#Amazon-Polly-amp-Transcribe" class="headerlink" title="Amazon Polly &amp; Transcribe"></a>Amazon Polly &amp; Transcribe</h4></li>
+<li>語音文字轉換<h4 id="Amazon-Rekognition"><a href="#Amazon-Rekognition" class="headerlink" title="Amazon Rekognition"></a>Amazon Rekognition</h4></li>
+<li>影像辨識服務</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h3><h4 id="Amazon-IoT-Core"><a href="#Amazon-IoT-Core" class="headerlink" title="Amazon IoT Core"></a>Amazon IoT Core</h4><h4 id="Amazon-IoT-Greengrass"><a href="#Amazon-IoT-Greengrass" class="headerlink" title="Amazon IoT Greengrass"></a>Amazon IoT Greengrass</h4><h4 id="Amazon-IoT-Analytics"><a href="#Amazon-IoT-Analytics" class="headerlink" title="Amazon IoT Analytics"></a>Amazon IoT Analytics</h4></blockquote>
+<blockquote>
+<h3 id="AR-amp-VR"><a href="#AR-amp-VR" class="headerlink" title="AR &amp; VR"></a>AR &amp; VR</h3><h4 id="Amazon-Sumerian"><a href="#Amazon-Sumerian" class="headerlink" title="Amazon Sumerian"></a>Amazon Sumerian</h4></blockquote>
+<blockquote>
+<h3 id="Edge-Location"><a href="#Edge-Location" class="headerlink" title="Edge Location"></a>Edge Location</h3><ul>
+<li>與當地企業合作 (不一定自己機房)<h4 id="Amazon-CloudFront"><a href="#Amazon-CloudFront" class="headerlink" title="Amazon CloudFront"></a>Amazon CloudFront</h4></li>
+<li>stores subset of data</li>
+<li>CDN service</li>
+<li>Global Edge Location, Regional Edge Location</li>
+<li>Caching static Content</li>
+<li>TTL</li>
+<li>Origin Access Identity (OAI)<h4 id="Amazon-Route-53-1"><a href="#Amazon-Route-53-1" class="headerlink" title="Amazon Route 53"></a>Amazon Route 53</h4><h4 id="AWS-Lambda-Edge"><a href="#AWS-Lambda-Edge" class="headerlink" title="AWS Lambda@Edge"></a>AWS Lambda@Edge</h4><h4 id="Amazon-ElastiCaching"><a href="#Amazon-ElastiCaching" class="headerlink" title="Amazon ElastiCaching"></a>Amazon ElastiCaching</h4></li>
+<li>Database Caching</li>
+<li>Finding heavy-hitting, high usage or high volume requests inundates database</li>
+<li>Memcached: 需清楚定義</li>
+<li>Redis: 針對 Key 做索取</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Local-Zone"><a href="#Local-Zone" class="headerlink" title="Local Zone"></a>Local Zone</h3><ul>
+<li>Extension of AWS Region</li>
+<li>與 Edge Location 差別: AWS 自己的機房, 支援服務種類更多</li>
+<li>提升 Single-digit latency</li>
+<li>Support: EC2, EBS, FSx, ELB, VPC, EMR, RDS</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Automation-Deployment"><a href="#Automation-Deployment" class="headerlink" title="Automation Deployment"></a>Automation Deployment</h3><h4 id="Amazon-CloudFormation"><a href="#Amazon-CloudFormation" class="headerlink" title="Amazon CloudFormation"></a>Amazon CloudFormation</h4><ul>
+<li>類似 Azure ARM template 功能</li>
+<li>Workflow: Template &gt; 放進 CloudFormation &gt; CloudFormation 複製<h4 id="Amazon-Elastic-Beanstalk"><a href="#Amazon-Elastic-Beanstalk" class="headerlink" title="Amazon Elastic Beanstalk"></a>Amazon Elastic Beanstalk</h4></li>
+<li>懶人部屬, 最簡單</li>
+<li>代工不用付費, 只需付費用到的功能</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="Payment"><a href="#Payment" class="headerlink" title="Payment"></a>Payment</h3><h4 id="Pricing-Calculator"><a href="#Pricing-Calculator" class="headerlink" title="Pricing Calculator"></a>Pricing Calculator</h4><ul>
+<li>Counting “預算”<h4 id="AWS-Budget"><a href="#AWS-Budget" class="headerlink" title="AWS Budget"></a>AWS Budget</h4></li>
+<li>Billing Alert, Budgets reports</li>
+<li>Centralized management<h4 id="AWS-IAM-Checklist"><a href="#AWS-IAM-Checklist" class="headerlink" title="AWS IAM Checklist"></a>AWS IAM Checklist</h4></li>
+<li>建議提升安全性的方法</li>
+<li>Advice</li>
+<li>MFA, Delete Root Access Keys, IAM passwork policy<h4 id="Pricing-Model"><a href="#Pricing-Model" class="headerlink" title="Pricing Model"></a>Pricing Model</h4></li>
+<li>On-demand: pay for what you want</li>
+<li>Spot Instance: Cheaper than on-demand, but 隨時會被收回</li>
+<li>Reserved Instance: “年”為單位, 簽的單位為物理資源(EC2, S3…)</li>
+<li>Saving Plan: 簽的單位為 IT 資源(CPU, Memory…)</li>
+<li>Dedicated Instance: pyhsically isolated</li>
+<li>Dedicated host: 租下整個機櫃 (Software licenses)</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">洪群崴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章連結: </span><span class="post-copyright-info"><a href="https://twentyone-ncu.github.io.git/2022/02/22/AWS-Service-types/AWS-Service-types/">https://twentyone-ncu.github.io.git/2022/02/22/AWS-Service-types/AWS-Service-types/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://Twentyone-NCU.github.io.git" target="_blank">Bboy Twentyone</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/top_2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/02/22/AWS-Global-Architectural-components/AWS-Global-Architectural-components/"><img class="next-cover" src="/img/top_2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">AWS Global Architectural components</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 評論</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/cartoon_me.svg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">洪群崴</div><div class="author-info__description">中央通訊所, 專業舞者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分類</div><div class="length-num">5</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://forms.gle/GjLs69eZhfKcQZVi8" target="_blank" title="Chat"><i class="fas fa-comment-dots"></i></a><a class="social-icon" href="https://github.com/Twentyone-NCU" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.linkedin.com/in/chungweihung-726056206" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://instagram.com/bboy_twenty1?utm_medium=copy_link" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">歡迎點擊聊天ICON和我匿名聊天!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Computing-Resources"><span class="toc-number">1.</span> <span class="toc-text">Computing Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-EC2"><span class="toc-number">1.1.</span> <span class="toc-text">Amazon EC2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Lambda"><span class="toc-number">1.2.</span> <span class="toc-text">AWS Lambda</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Connection"><span class="toc-number">2.</span> <span class="toc-text">Connection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-VPC"><span class="toc-number">2.1.</span> <span class="toc-text">AWS VPC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-DX"><span class="toc-number">2.2.</span> <span class="toc-text">AWS DX</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serverless"><span class="toc-number">3.</span> <span class="toc-text">Serverless</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda-Function"><span class="toc-number">3.1.</span> <span class="toc-text">Lambda Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-API-Gateway"><span class="toc-number">3.2.</span> <span class="toc-text">Amazon API Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-step-funciton"><span class="toc-number">3.3.</span> <span class="toc-text">AWS step funciton</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-X-ray"><span class="toc-number">3.4.</span> <span class="toc-text">AWS X-ray</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Container"><span class="toc-number">4.</span> <span class="toc-text">Container</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-ECS"><span class="toc-number">4.1.</span> <span class="toc-text">Amazon ECS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Fargate"><span class="toc-number">4.2.</span> <span class="toc-text">Amazon Fargate</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Storage"><span class="toc-number">5.</span> <span class="toc-text">Storage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-DMS"><span class="toc-number">5.1.</span> <span class="toc-text">Amazon DMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-EBS"><span class="toc-number">5.2.</span> <span class="toc-text">Amazon EBS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-S3"><span class="toc-number">5.3.</span> <span class="toc-text">Amazon S3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-EFS-amp-FSx"><span class="toc-number">5.4.</span> <span class="toc-text">Amazon EFS &amp; FSx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-RDS"><span class="toc-number">5.5.</span> <span class="toc-text">Amazon RDS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Dynamo-DB"><span class="toc-number">5.6.</span> <span class="toc-text">Amazon Dynamo DB</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secure"><span class="toc-number">6.</span> <span class="toc-text">Secure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Security-Group"><span class="toc-number">6.1.</span> <span class="toc-text">Security Group</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-IAM"><span class="toc-number">6.2.</span> <span class="toc-text">AWS IAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-WAF"><span class="toc-number">6.3.</span> <span class="toc-text">AWS WAF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Shield"><span class="toc-number">6.4.</span> <span class="toc-text">AWS Shield</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Artifact"><span class="toc-number">6.5.</span> <span class="toc-text">Artifact</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Trusted-Advisor"><span class="toc-number">6.6.</span> <span class="toc-text">AWS Trusted Advisor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Monitor"><span class="toc-number">7.</span> <span class="toc-text">Monitor</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-CloudWatch"><span class="toc-number">7.1.</span> <span class="toc-text">Amazon CloudWatch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Config"><span class="toc-number">7.2.</span> <span class="toc-text">Amazon Config</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-CloudTrail"><span class="toc-number">7.3.</span> <span class="toc-text">Amazon CloudTrail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Inspector"><span class="toc-number">7.4.</span> <span class="toc-text">Amazon Inspector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Macie"><span class="toc-number">7.5.</span> <span class="toc-text">Amazon Macie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-SNS"><span class="toc-number">7.6.</span> <span class="toc-text">Amazon SNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-SQS"><span class="toc-number">7.7.</span> <span class="toc-text">Amazon SQS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-ELB"><span class="toc-number">7.8.</span> <span class="toc-text">Amazon ELB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Route-53"><span class="toc-number">7.9.</span> <span class="toc-text">Amazon Route 53</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auto-Scaling"><span class="toc-number">8.</span> <span class="toc-text">Auto Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RTO"><span class="toc-number">8.1.</span> <span class="toc-text">RTO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RPO"><span class="toc-number">8.2.</span> <span class="toc-text">RPO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Auto-Scaling"><span class="toc-number">8.3.</span> <span class="toc-text">AWS Auto Scaling</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Machine-Learning"><span class="toc-number">9.</span> <span class="toc-text">Machine Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-SageMaker-amp-DeepRacer"><span class="toc-number">9.1.</span> <span class="toc-text">Amazon SageMaker &amp; DeepRacer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Lex"><span class="toc-number">9.2.</span> <span class="toc-text">Amazon Lex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Polly-amp-Transcribe"><span class="toc-number">9.3.</span> <span class="toc-text">Amazon Polly &amp; Transcribe</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Rekognition"><span class="toc-number">9.4.</span> <span class="toc-text">Amazon Rekognition</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IoT"><span class="toc-number">10.</span> <span class="toc-text">IoT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-IoT-Core"><span class="toc-number">10.1.</span> <span class="toc-text">Amazon IoT Core</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-IoT-Greengrass"><span class="toc-number">10.2.</span> <span class="toc-text">Amazon IoT Greengrass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-IoT-Analytics"><span class="toc-number">10.3.</span> <span class="toc-text">Amazon IoT Analytics</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AR-amp-VR"><span class="toc-number">11.</span> <span class="toc-text">AR &amp; VR</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Sumerian"><span class="toc-number">11.1.</span> <span class="toc-text">Amazon Sumerian</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edge-Location"><span class="toc-number">12.</span> <span class="toc-text">Edge Location</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-CloudFront"><span class="toc-number">12.1.</span> <span class="toc-text">Amazon CloudFront</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Route-53-1"><span class="toc-number">12.2.</span> <span class="toc-text">Amazon Route 53</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Lambda-Edge"><span class="toc-number">12.3.</span> <span class="toc-text">AWS Lambda@Edge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-ElastiCaching"><span class="toc-number">12.4.</span> <span class="toc-text">Amazon ElastiCaching</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-Zone"><span class="toc-number">13.</span> <span class="toc-text">Local Zone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Automation-Deployment"><span class="toc-number">14.</span> <span class="toc-text">Automation Deployment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-CloudFormation"><span class="toc-number">14.1.</span> <span class="toc-text">Amazon CloudFormation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Amazon-Elastic-Beanstalk"><span class="toc-number">14.2.</span> <span class="toc-text">Amazon Elastic Beanstalk</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payment"><span class="toc-number">15.</span> <span class="toc-text">Payment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pricing-Calculator"><span class="toc-number">15.1.</span> <span class="toc-text">Pricing Calculator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Budget"><span class="toc-number">15.2.</span> <span class="toc-text">AWS Budget</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-IAM-Checklist"><span class="toc-number">15.3.</span> <span class="toc-text">AWS IAM Checklist</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pricing-Model"><span class="toc-number">15.4.</span> <span class="toc-text">Pricing Model</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/AWS-Service-types/AWS-Service-types/" title="AWS Service types"><img src="/img/top_2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS Service types"/></a><div class="content"><a class="title" href="/2022/02/22/AWS-Service-types/AWS-Service-types/" title="AWS Service types">AWS Service types</a><time datetime="2022-02-22T06:21:54.000Z" title="發表於 2022-02-22 14:21:54">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/AWS-Global-Architectural-components/AWS-Global-Architectural-components/" title="AWS Global Architectural components"><img src="/img/top_2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS Global Architectural components"/></a><div class="content"><a class="title" href="/2022/02/22/AWS-Global-Architectural-components/AWS-Global-Architectural-components/" title="AWS Global Architectural components">AWS Global Architectural components</a><time datetime="2022-02-22T06:21:46.000Z" title="發表於 2022-02-22 14:21:46">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/AWS-Interaction-tools/AWS-Interaction-tools/" title="AWS Interaction tools"><img src="/img/top_2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS Interaction tools"/></a><div class="content"><a class="title" href="/2022/02/22/AWS-Interaction-tools/AWS-Interaction-tools/" title="AWS Interaction tools">AWS Interaction tools</a><time datetime="2022-02-22T06:21:37.000Z" title="發表於 2022-02-22 14:21:37">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/AWS-Manage-components/AWS-Manage-components/" title="AWS Manage components"><img src="/img/top_2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS Manage components"/></a><div class="content"><a class="title" href="/2022/02/22/AWS-Manage-components/AWS-Manage-components/" title="AWS Manage components">AWS Manage components</a><time datetime="2022-02-22T06:21:29.000Z" title="發表於 2022-02-22 14:21:29">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/AWS-Adoption-Journey/AWS-Adoption-Journey/" title="AWS Adoption Journey"><img src="/img/top_2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS Adoption Journey"/></a><div class="content"><a class="title" href="/2022/02/22/AWS-Adoption-Journey/AWS-Adoption-Journey/" title="AWS Adoption Journey">AWS Adoption Journey</a><time datetime="2022-02-22T06:21:19.000Z" title="發表於 2022-02-22 14:21:19">2022-02-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/top_2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 洪群崴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主題 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">一個關於跳舞的碩士生，生活經驗分享的地方</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="單欄和雙欄切換"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直達評論"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到頂部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'D8QIMB2WLTOMVzLmdhFmnWIA-MdYXbMMI',
+      appKey: 'DGOHNH1zmo0tuTvJFF0KgHCb',
+      placeholder: '想對我說甚麼~? 希望我回覆的話也可以去點頭像下面的聊天 ICON 或是留下 Email 喔!',
+      avatar: 'monsterid',
+      meta: 'nick,mail'.split(','),
+      pageSize: '10',
+      lang: 'zh-TW',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_親親":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再見":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_發怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_發財":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可愛":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_嘔吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_壞笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尷尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_驚嚇":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: [],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
